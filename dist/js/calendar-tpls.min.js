@@ -383,7 +383,7 @@ angular.module('ui.rCalendar', [])
                 scope.formatDayHeader = ctrl.formatDayHeader;
 
                 scope.getMonthContentUrl = function(){
-                    return ctrl.calendarParams.monthView.templateUrl || 'templates/rcalendar/month.html',
+                    return ctrl.calendarParams.monthView.templateUrl || 'templates/rcalendar/month.html';
                 };
 
                 element.className += ' '+(ctrl.calendarParams.monthView.className || '')+' ';
@@ -693,7 +693,7 @@ angular.module('ui.rCalendar', [])
                 scope.formatHourColumn = ctrl.formatHourColumn;
 
                 scope.getWeekContentUrl = function(){
-                    return ctrl.calendarParams.weekView.templateUrl || 'templates/rcalendar/week.html',
+                    return ctrl.calendarParams.weekView.templateUrl || 'templates/rcalendar/week.html';
                 };
 
                 element.className += ' '+(ctrl.calendarParams.weekView.className || '')+' ';
@@ -993,7 +993,7 @@ angular.module('ui.rCalendar', [])
                 scope.hourParts = ctrl.hourParts;
 
                 scope.getDayContentUrl = function(){
-                    return ctrl.calendarParams.weekView.templateUrl || 'templates/rcalendar/day.html',
+                    return ctrl.calendarParams.weekView.templateUrl || 'templates/rcalendar/day.html';
                 };
 
                 function createDateObjects(startTime) {
