@@ -386,6 +386,8 @@ angular.module('ui.rCalendar', [])
                     return ctrl.calendarParams.monthView.templateUrl || 'templates/rcalendar/month.html',
                 };
 
+                element.className += ' '+(ctrl.calendarParams.monthView.className || '')+' ';
+
                 ctrl.mode = {
                     step: {months: 1}
                 };
@@ -694,6 +696,8 @@ angular.module('ui.rCalendar', [])
                     return ctrl.calendarParams.weekView.templateUrl || 'templates/rcalendar/week.html',
                 };
 
+                element.className += ' '+(ctrl.calendarParams.weekView.className || '')+' ';
+
                 ctrl.mode = {
                     step: {days: 7}
                 };
@@ -982,6 +986,8 @@ angular.module('ui.rCalendar', [])
                 ctrl.mode = {
                     step: {days: 1}
                 };
+
+                element.className += ' '+(ctrl.calendarParams.dayView.className || '')+' ';
 
                 scope.allDayLabel = ctrl.allDayLabel;
                 scope.hourParts = ctrl.hourParts;
