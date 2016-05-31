@@ -39,6 +39,8 @@ angular.module('ui.rCalendar', [])
             self.onEventSourceChanged(value);
         });
 
+        $scope.calendarParams = calendarConfig.calendarParams;
+
         $scope.calendarMode = $scope.calendarMode || calendarConfig.calendarMode;
         if (angular.isDefined($attrs.initDate)) {
             self.currentCalendarDate = $scope.$parent.$eval($attrs.initDate);
@@ -345,7 +347,8 @@ angular.module('ui.rCalendar', [])
                 rangeChanged: '&',
                 eventSelected: '&',
                 timeSelected: '&',
-                titleChanged: '&'
+                titleChanged: '&',
+                calendarParams:'&'
             },
             require: ['calendar', '?^ngModel'],
             controller: 'ui.rCalendar.CalendarController',
@@ -371,13 +374,17 @@ angular.module('ui.rCalendar', [])
         return {
             restrict: 'EA',
             replace: true,
-            templateUrl: 'templates/rcalendar/month.html',
+            template: '<div ng-include="getMonthContentUrl()"></div>',
             require: ['^calendar', '?^ngModel'],
             link: function (scope, element, attrs, ctrls) {
                 var ctrl = ctrls[0],
                     ngModelCtrl = ctrls[1];
                 scope.showEventDetail = ctrl.showEventDetail;
                 scope.formatDayHeader = ctrl.formatDayHeader;
+
+                scope.getMonthContentUrl = function(){
+                    return ctrl.calendarParams.monthView.templateUrl || 'templates/rcalendar/month.html',
+                };
 
                 ctrl.mode = {
                     step: {months: 1}
@@ -676,11 +683,16 @@ angular.module('ui.rCalendar', [])
         return {
             restrict: 'EA',
             replace: true,
-            templateUrl: 'templates/rcalendar/week.html',
+            template: '<div ng-include="getWeekContentUrl()"></div>',
+            // templateUrl: 'templates/rcalendar/week.html',
             require: '^calendar',
             link: function (scope, element, attrs, ctrl) {
                 scope.formatWeekViewDayHeader = ctrl.formatWeekViewDayHeader;
                 scope.formatHourColumn = ctrl.formatHourColumn;
+
+                scope.getWeekContentUrl = function(){
+                    return ctrl.calendarParams.weekView.templateUrl || 'templates/rcalendar/week.html',
+                };
 
                 ctrl.mode = {
                     step: {days: 7}
@@ -961,7 +973,8 @@ angular.module('ui.rCalendar', [])
         return {
             restrict: 'EA',
             replace: true,
-            templateUrl: 'templates/rcalendar/day.html',
+            template: '<div ng-include="getDayContentUrl()"></div>',
+            // templateUrl: 'templates/rcalendar/day.html',
             require: '^calendar',
             link: function (scope, element, attrs, ctrl) {
                 scope.formatHourColumn = ctrl.formatHourColumn;
@@ -972,6 +985,10 @@ angular.module('ui.rCalendar', [])
 
                 scope.allDayLabel = ctrl.allDayLabel;
                 scope.hourParts = ctrl.hourParts;
+
+                scope.getDayContentUrl = function(){
+                    return ctrl.calendarParams.weekView.templateUrl || 'templates/rcalendar/day.html',
+                };
 
                 function createDateObjects(startTime) {
                     var rows = [],

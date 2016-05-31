@@ -1,5 +1,5 @@
 <div class="calendar-container" ng-switch="calendarMode">
-    <dayview ng-switch-when="day"></dayview>
-    <monthview ng-switch-when="month"></monthview>
-    <weekview ng-switch-when="week"></weekview>
+    <dayview ng-switch-when="day" params="calendarParams.day"></dayview>
+    <monthview ng-switch-when="month" params="calendarParams.month"></monthview>
+    <weekview ng-switch-when="week" params="calendarParams.week"></weekview>
 </div>
